@@ -1,1 +1,18 @@
-
+#include <iostream>
+using namespace std;
+class Concrete {
+private:
+    string message;
+public:
+    Concrete(string msg) {
+        message = msg;
+    }
+    void displayMessage() {
+        cout << "Message : " << message << endl;
+    }
+};
+int main() {
+    Concrete obj("Assalam o Alaikum, How are you ?");
+    obj.displayMessage();
+    return 0;
+}

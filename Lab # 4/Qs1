@@ -1,1 +1,29 @@
-
+#include <iostream>
+#include <string>
+using namespace std;
+class MobileAccount {
+private:
+    double balance;
+    string phoneNumber;
+public:
+    MobileAccount() {
+        balance = 50.0;
+        phoneNumber = "";
+    }
+    MobileAccount(string number, double bal) {
+        phoneNumber = number;
+        balance = bal;
+    }
+    void display() {
+        cout << "Phone Number: " << phoneNumber << endl;
+        cout << "Current Balance: " << balance << " PKR" << endl;
+    }
+};
+int main() {
+    MobileAccount user1;
+    MobileAccount user2("03001234567", 200);
+    user1.display();
+    cout << endl;
+    user2.display();
+    return 0;
+}

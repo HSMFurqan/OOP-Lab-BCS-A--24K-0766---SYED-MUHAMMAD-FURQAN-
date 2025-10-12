@@ -1,1 +1,47 @@
-
+#include <iostream>
+#include <string>
+using namespace std;
+class SecureBankAccount {
+private:
+    int accountNumber;
+    double balance;
+    const string accountType;
+    int* logHistory;
+public:
+    SecureBankAccount(int accNum, double initialBalance, string type, int logSize)
+        : accountType(type) {
+        this->accountNumber = accNum;
+        this->balance = initialBalance;
+        if (initialBalance < 500.0) {
+            cout << "Error: Minimum balance must be at least 500 PKR.\n";
+        }
+        logHistory = new int(logSize);
+        cout << "Account " << accountNumber << " (" << accountType
+             << ") created with balance " << balance << " PKR.\n";
+    }
+    SecureBankAccount(const SecureBankAccount& src)
+        : accountType(src.accountType) {
+        accountNumber = src.accountNumber;
+        balance = src.balance;
+        logHistory = new int(*(src.logHistory));
+    }
+    ~SecureBankAccount() {
+        delete logHistory;
+        cout << "Account " << accountNumber << " memory released.\n";
+    }
+    void display() {
+        cout << "Account#: " << accountNumber
+             << "\nType: " << accountType
+             << "\nBalance: " << balance
+             << "\nLog Address: " << logHistory
+             << "\nLog Value: " << *logHistory << endl;
+    }
+};
+int main() {
+    SecureBankAccount acc1(12345, 2000.0, "Current", 10);
+    acc1.display();
+    cout << "\nCreating Deep Copy...\n";
+    SecureBankAccount acc2 = acc1;
+    acc2.display();
+    return 0;
+}

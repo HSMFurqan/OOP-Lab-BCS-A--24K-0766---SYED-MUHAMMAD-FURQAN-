@@ -1,1 +1,33 @@
-
+#include <iostream>
+#include <string>
+using namespace std;
+class NUCES_Student {
+private:
+    int id;
+    string name;
+public:
+    NUCES_Student() {
+        id = 0;
+        name = "Not Registered";
+    }
+    NUCES_Student(int idVal) {
+        id = idVal;
+        name = "Name Pending";
+    }
+    NUCES_Student(int id, string name) {
+        this->id = id;
+        this->name = name;
+    }
+    void display() {
+        cout << "ID : " << id << "\nName : " << name <<"\n"<< endl;
+    }
+};
+int main() {
+    NUCES_Student s1;
+    NUCES_Student s2(1);
+    NUCES_Student s3(2, "Ali Khan");
+    s1.display();
+    s2.display();
+    s3.display();
+    return 0;
+}

@@ -1,1 +1,28 @@
-
+#include <iostream>
+#include <string>
+using namespace std;
+class CurrencyExchange {
+private:
+    const double PKR_to_USD_Rate;
+    string& branchName;
+    int totalTransactions;
+public:
+    CurrencyExchange(double rate, string& branch, int transactions)
+        : PKR_to_USD_Rate(rate), branchName(branch), totalTransactions(transactions) {}
+    double convertPKRtoUSD(double pkrAmount) {
+        return pkrAmount / PKR_to_USD_Rate;
+    }
+    void display() {
+        cout << "Branch: " << branchName
+             << "\nRate: 1 USD = " << PKR_to_USD_Rate << " PKR"
+             << "\nTotal Transactions: " << totalTransactions << endl;
+    }
+};
+int main() {
+    string branch = "Karachi Main Branch";
+    CurrencyExchange exchange(283.0, branch, 150);
+    exchange.display();
+    double usd = exchange.convertPKRtoUSD(10000);
+    cout << "10000 PKR = " << usd << " USD\n";
+    return 0;
+}

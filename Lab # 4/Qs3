@@ -1,1 +1,41 @@
-
+#include <iostream>
+using namespace std;
+class PropertyDeed {
+private:
+    int* ownerID;
+public:
+    PropertyDeed(int id) {
+        ownerID = new int(id);
+    }
+    PropertyDeed(const PropertyDeed& src) {
+        ownerID = src.ownerID;
+    }
+    PropertyDeed(const PropertyDeed& src, bool deepCopyFlag) {
+        if (deepCopyFlag)
+            ownerID = new int(*(src.ownerID));
+        else
+            ownerID = src.ownerID;
+    }
+    void setOwnerID(int id) {
+        *ownerID = id;
+    }
+    void display() {
+        cout << "Owner ID Value : " << *ownerID
+             << " , Memory Address : " << ownerID << endl;
+    }
+};
+int main() {
+    PropertyDeed p1(1001);
+    PropertyDeed shallowCopy(p1);
+    PropertyDeed deepCopy(p1, true);
+    cout << "Before change:\n";
+    p1.display();
+    shallowCopy.display();
+    deepCopy.display();
+    p1.setOwnerID(9999);
+    cout << "\nAfter modifying original:\n";
+    p1.display();
+    shallowCopy.display();
+    deepCopy.display();
+    return 0;
+}
